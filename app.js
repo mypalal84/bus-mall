@@ -2,8 +2,12 @@
 
 var productName = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'];
 
-var imagePath = ['img/bag.jpg', 'img/banana.jpg', 'img/bathroom.jpg', 'img/boots.jpg', 'img/breakfast.jpg', 'img/bubblegum.jpg', 'img/chair.jpg', 'img/cthulhu.jpg', 'img/dog-duck.jpg', 'img/dragon.jpg', 'img/pen.jpg', 'img/pet-sweep.jpg', 'img/scissors.jpg', 'img/shark.jpg', 'img/sweep.png', 'img/tauntaun.jpg', 'img/unicorn.jpg', 'img/usb.gif', 'img/water-can.jpg', 'img/wine-glass.jpg'];
+var imagePath = ['./img/bag.jpg', './img/banana.jpg', './img/bathroom.jpg', './img/boots.jpg', './img/breakfast.jpg', './img/bubblegum.jpg', './img/chair.jpg', './img/cthulhu.jpg', './img/dog-duck.jpg', './img/dragon.jpg', './img/pen.jpg', './img/pet-sweep.jpg', './img/scissors.jpg', './img/shark.jpg', './img/sweep.png', './img/tauntaun.jpg', './img/unicorn.jpg', './img/usb.gif', './img/water-can.jpg', './img/wine-glass.jpg'];
 
+var leftImage = document.getElementById('left');
+var centerImage = document.getElementById('center');
+var rightImage = document.getElementById('right');
+var elArray = [leftImage, centerImage, rightImage];
 var shown = 0;
 var clicked = 0;
 var productOne = document.createElement('pic-1');
@@ -11,12 +15,11 @@ var productTwo = document.createElement('pic-2');
 var productThree = document.createElement('pic-3');
 
 //constructor function
-function ProductPic(productName, clicked, shown, imagePath) {
+function ProductPic(productName, clicked, shown, imagePath){
   this.productName = productName;
   this.clicked = clicked;
   this.shown = shown;
   this.imagePath = imagePath;
-
 };
 
 //adding our constructor objects
@@ -42,3 +45,67 @@ var waterCan = new ProductPic(productName[18], 0, 0, imagePath[18]);
 var wineGlass = new ProductPic(productName[19], 0, 0, imagePath[19]);
 
 var productPicArray = [bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep, scissors, shark, sweep, tauntaun, unicorn, usb, waterCan, wineGlass];
+
+//random number between 0 and 19
+var randNum = function(){
+  var min = 0;
+  var max = 19;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+//method for displaying the 3 random pics
+function displayImg() {
+  for(var i = 0; i < 3; i++){
+    var newImage = randNum();
+    var getImage = productPicArray[newImage].imagePath;
+    console.log(getImage);
+    console.log(elArray);
+    elArray[i].setAttribute('src', getImage);
+  }
+};
+displayImg();
+
+
+
+
+
+
+
+
+
+
+//   var leftIndex = randNum();
+//   var leftProduct = productPicArray[leftIndex];
+//   var left = document.getElementById('left');
+//   left.src = leftProduct.imagePath;
+//   left.alt = leftProduct.productName;
+//   leftProduct.shown += 1;
+// };
+//
+// displayImg();
+
+  // var centerIndex = randNum();
+  // while (centerIndex === leftIndex) {
+  //   centerIndex = randNum();
+  // }
+  //
+  // var centerProduct = productPicArray[centerIndex];
+  // 'pic-center'.src = centerProduct.path;
+  // 'pic-center'.alt = centerProduct.productName;
+  // centerProduct.views += 1;
+  //
+  // var rightIndex = randNum();
+  // while (rightIndex === leftIndex || rightIndex === centerIndex) {
+  //   rightIndex = randNum();
+  // }
+  //
+  // var rightProduct = productPicArray[rightIndex];
+  // 'pic-right'.src = rightProduct.path;
+  // 'pic-right'.alt = rightProduct.productName;
+  // rightProduct.views += 1;
+  //
+  // shown = [leftIndex, centerIndex, rightIndex];
+//
+// };
+//
+//   ProductPic.displayPics();

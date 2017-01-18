@@ -2,4 +2,39 @@
   background-color: yellow;
   display: block;
   border: 1px dashed brown;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+h1{
+  text-align: center;
+}
+
+#three-images{
+  border: 2px solid black;
+  width: 718.625px;
+  height: 200px;
+}
+
+#left{
+  float: left;
+  height: 200px;
+  width: 200px;
+  margin: auto;
+}
+
+#center{
+  float: left;
+  height: 200px;
+  width: 200px;
+  margin: auto;
+  margin-left: 56px;
+}
+
+#right{
+  float: left;
+  height: 200px;
+  width: 200px;
+  margin: auto;
+  margin-left: 56px;
 }
