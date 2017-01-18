@@ -2,7 +2,6 @@
 
 ### Marketing Research Team Stories
 
-
 1. As a member of the marketing research team, I want to get proper feedback from our focus group so that I can make sure the right products are being sold.
 
 - As a member of the marketing research team, I want the focus groups to have an unbiased and random test so that the analysis is accurate.
@@ -12,7 +11,6 @@
 - As a member of the marketing research team, I want the test to be easy and intuitive so that user error is minimized.
 
 ### Developer Stories
-
 
 1. As a developer, I want make a good looking, unbiased, intuitive page so that the focus group participant doesn't find the test difficult.
 
