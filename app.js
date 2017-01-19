@@ -47,6 +47,7 @@ function Product(productName, imagePath){
   this.clicked = 0;
   this.shown = 0;
   this.imagePath = imagePath;
+
 };
 
 //adding our constructor objects and pushing them into the productArray
@@ -110,7 +111,7 @@ rightImage.addEventListener('click', clickTrackerHandler, false);
 function clickTrackerHandler(event) {
   event.preventDefault();
   event.stopPropagation();
-  if(clickCounter < 5) {
+  if(clickCounter < 25) {
     clickCounter++;
   // console.log(event);
   // console.log(event.target.id);
@@ -126,9 +127,20 @@ function clickTrackerHandler(event) {
     noRepeat();
     renderImage();
   }
-  // else(){
+  else {
+    renderImage();
+    // console.log(percent(productArray[5].clicked, productArray[5].shown));
+    for (var i = 0; i < productArray.length; i++){
+      var liEl = document.getElementById('product-ul');
+      var newLiEl = document.createElement('li');
+      newLiEl.setAttribute('class', 'product-images');
+      newLiEl.textContent = productArray[i].productName + ': was shown ' + productArray[i].shown + ' times, and was clicked ' + productArray[i].clicked + ' times.';
+      liEl.appendChild(newLiEl);
+    }
+  }
 }
 
+//percentage function for products clicked/products shown
 function percent(clicked, shown) {
   return((clicked / shown) * 100).toFixed(2);
 }
