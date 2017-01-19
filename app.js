@@ -116,7 +116,7 @@ function clickTrackerHandler(event) {
 }
 
 //push numbers into arrays
-var pushIntoArrays = function() {
+function pushIntoArrays() {
   for(var i = 0; i < productArray.length; i++){
     clickedArray.push(productArray[i].clicked);
     shownArray.push(productArray[i].shown);
