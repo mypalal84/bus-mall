@@ -1,34 +1,4 @@
 'use strict';
-// //canvas
-// var context = document.getElementById('demo-chart').getContext('2d');
-//
-// var chartData = [100, 200, 300, 50, 10];
-// var chartColors = ['blue', 'red', 'yellow', 'orange', 'green'];
-// var chartLabels = ['Adam', 'Russell', 'Lynch', 'Tom Brady', 'Santa'];
-//
-// var chartOptions = {
-//   responsive: false,
-//   scales: {
-//     yAxes: [{
-//       ticks: {
-//         beginAtZero: true
-//       }
-//     }]
-//   }
-// };
-//
-// var myFirstChart = new Chart(context, {
-//   type:'bar',
-//   data: {
-//     labels: chartLabels,
-//     datasets: [{
-//       label: '# of votes for each color',
-//       data: chartData,
-//       backgroundColor: chartColors
-//     }]
-//   },
-//   options: chartOptions
-// });
 
 //global variables
 var productArray = [];
@@ -47,7 +17,6 @@ function Product(productName, imagePath){
   this.clicked = 0;
   this.shown = 0;
   this.imagePath = imagePath;
-
 };
 
 //adding our constructor objects and pushing them into the productArray
@@ -137,7 +106,7 @@ function clickTrackerHandler(event) {
       var liEl = document.getElementById('product-ul');
       var newLiEl = document.createElement('li');
       newLiEl.setAttribute('class', 'product-images');
-      newLiEl.textContent = productArray[i].productName + ': was shown ' + productArray[i].shown + ' times, and was clicked ' + productArray[i].clicked + ' times.';
+      newLiEl.textContent = productArray[i].clicked + ' votes for ' + productArray[i].productName + '.';
       liEl.appendChild(newLiEl);
     }
   }
