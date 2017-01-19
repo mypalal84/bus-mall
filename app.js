@@ -132,7 +132,8 @@ function percent(clicked, shown) {
 //canvas
 function renderChart() {
   var context = document.getElementById('product-chart').getContext('2d');
-
+  Chart.defaults.global.defaultFontColor = 'black';
+  Chart.defaults.global.defaultFontSize = 14;
   var chartOptions = {
     responsive: false,
     scales: {
