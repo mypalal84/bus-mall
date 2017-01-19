@@ -1,38 +1,11 @@
 'use strict';
-// //canvas
-// var context = document.getElementById('demo-chart').getContext('2d');
-//
-// var chartData = [100, 200, 300, 50, 10];
-// var chartColors = ['blue', 'red', 'yellow', 'orange', 'green'];
-// var chartLabels = ['Adam', 'Russell', 'Lynch', 'Tom Brady', 'Santa'];
-//
-// var chartOptions = {
-//   responsive: false,
-//   scales: {
-//     yAxes: [{
-//       ticks: {
-//         beginAtZero: true
-//       }
-//     }]
-//   }
-// };
-//
-// var myFirstChart = new Chart(context, {
-//   type:'bar',
-//   data: {
-//     labels: chartLabels,
-//     datasets: [{
-//       label: '# of votes for each color',
-//       data: chartData,
-//       backgroundColor: chartColors
-//     }]
-//   },
-//   options: chartOptions
-// });
 
 //global variables
 var productArray = [];
 var randNumArray = [];
+var productNameArray = [];
+var clickedArray = [];
+var shownArray = [];
 var leftImage = document.getElementById('left');
 var centerImage = document.getElementById('center');
 var rightImage = document.getElementById('right');
@@ -40,6 +13,9 @@ var elArray = [leftImage, centerImage, rightImage];
 var shown;
 var clicked;
 var clickCounter = 0;
+//for chart
+var chartColors = ['tomato', 'sienna', 'paleturquoise', 'darkseagreen', 'sandybrown', 'mocassin', 'cornflowerblue', 'darkkhaki', 'seashell', 'limegreen', 'royalblue', 'darksalmon', 'wheat', 'darkgrey', 'burlywood', 'darkcyan', 'mediumvioletred', 'darkred', 'forestgreen', 'bisque'];
+var chartLabels = [];
 
 //constructor function
 function Product(productName, imagePath){
@@ -74,7 +50,7 @@ productArray.push(new Product('wine-glass', 'img/wine-glass.jpg'));
 console.log(productArray);
 
 //random number between 0 and 19
-var randNum = function(){
+var randNum = function() {
   var min = 0;
   var max = 19;
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -133,18 +109,51 @@ function clickTrackerHandler(event) {
     leftImage.removeEventListener('click', clickTrackerHandler, false);
     centerImage.removeEventListener('click', clickTrackerHandler, false);
     rightImage.removeEventListener('click', clickTrackerHandler, false);
-    // console.log(percent(productArray[5].clicked, productArray[5].shown));
-    for (var i = 0; i < productArray.length; i++){
-      var liEl = document.getElementById('product-ul');
-      var newLiEl = document.createElement('li');
-      newLiEl.setAttribute('class', 'product-images');
-      newLiEl.textContent = productArray[i].productName + ': was shown ' + productArray[i].shown + ' times, and was clicked ' + productArray[i].clicked + ' times.';
-      liEl.appendChild(newLiEl);
-    }
+    pushIntoArrays();
+    renderChart();
+    console.log(clickedArray);
   }
 }
+
+//push numbers into arrays
+var pushIntoArrays = function() {
+  for(var i = 0; i < productArray.length; i++){
+    clickedArray.push(productArray[i].clicked);
+    shownArray.push(productArray[i].shown);
+    productNameArray.push(productArray[i].productName);
+  }
+};
 
 //percentage function for products clicked/products shown
 function percent(clicked, shown) {
   return((clicked / shown) * 100).toFixed(2);
+}
+
+//canvas
+function renderChart() {
+  var context = document.getElementById('product-chart').getContext('2d');
+
+  var chartOptions = {
+    responsive: false,
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  };
+
+  var productChart = new Chart(context, {
+    type:'bar',
+    data: {
+      labels: productNameArray,
+      datasets: [{
+        label: '# of votes for each product',
+        data: clickedArray,
+        backgroundColor: chartColors
+      }]
+    },
+    options: chartOptions
+  });
 }

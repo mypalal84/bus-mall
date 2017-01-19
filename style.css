@@ -1,7 +1,5 @@
 *{
-  background-color: yellow;
   display: block;
-  border: 1px dashed brown;
   margin-left: 10%;
   margin-right: 10%;
 }
@@ -11,7 +9,6 @@ h1{
 }
 
 #three-images{
-  border: 2px solid black;
   width: 718.625px;
   height: 200px;
 }
@@ -38,7 +35,7 @@ h1{
   margin: auto;
   margin-left: 56px;
 }
-/*
-#demo-chart{
 
-}*/
+#demo-chart{
+  
+}
