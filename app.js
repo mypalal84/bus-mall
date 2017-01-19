@@ -1,36 +1,5 @@
 'use strict';
-// //canvas
-// var context = document.getElementById('demo-chart').getContext('2d');
-//
-// var chartData = [100, 200, 300, 50, 10];
-// var chartColors = ['blue', 'red', 'yellow', 'orange', 'green'];
-// var chartLabels = ['Adam', 'Russell', 'Lynch', 'Tom Brady', 'Santa'];
-//
-// var chartOptions = {
-//   responsive: false,
-//   scales: {
-//     yAxes: [{
-//       ticks: {
-//         beginAtZero: true
-//       }
-//     }]
-//   }
-// };
-//
-// var myFirstChart = new Chart(context, {
-//   type:'bar',
-//   data: {
-//     labels: chartLabels,
-//     datasets: [{
-//       label: '# of votes for each color',
-//       data: chartData,
-//       backgroundColor: chartColors
-//     }]
-//   },
-//   options: chartOptions
-// });
 
-//global variables
 var productArray = [];
 var randNumArray = [];
 var leftImage = document.getElementById('left');
@@ -101,47 +70,6 @@ function renderImage() {
   }
 }
 renderImage();
-
-//event listener
-leftImage.addEventListener('click', clickTrackerHandler, false);
-centerImage.addEventListener('click', clickTrackerHandler, false);
-rightImage.addEventListener('click', clickTrackerHandler, false);
-
-//click event handler
-function clickTrackerHandler(event) {
-  event.preventDefault();
-  event.stopPropagation();
-  if(clickCounter < 25) {
-    clickCounter++;
-  // console.log(event);
-  // console.log(event.target.id);
-    if(event.target.id === 'left'){
-      productArray[randNumArray[0]].clicked++;
-    }
-    else if(event.target.id === 'center'){
-      productArray[randNumArray[1]].clicked++;
-    }
-    else if(event.target.id === 'right'){
-      productArray[randNumArray[2]].clicked++;
-    }
-    noRepeat();
-    renderImage();
-  }
-  else {
-    renderImage();
-    leftImage.removeEventListener('click', clickTrackerHandler, false);
-    centerImage.removeEventListener('click', clickTrackerHandler, false);
-    rightImage.removeEventListener('click', clickTrackerHandler, false);
-    // console.log(percent(productArray[5].clicked, productArray[5].shown));
-    for (var i = 0; i < productArray.length; i++){
-      var liEl = document.getElementById('product-ul');
-      var newLiEl = document.createElement('li');
-      newLiEl.setAttribute('class', 'product-images');
-      newLiEl.textContent = productArray[i].productName + ': was shown ' + productArray[i].shown + ' times, and was clicked ' + productArray[i].clicked + ' times.';
-      liEl.appendChild(newLiEl);
-    }
-  }
-}
 
 //event listener
 leftImage.addEventListener('click', clickTrackerHandler, false);
