@@ -2,8 +2,16 @@
   display: block;
   margin-left: 10%;
   margin-right: 10%;
-  background-color: lightgray;
+  background-color: antiquewhite;
 }
+/*
+html {
+  background: url('img/u5mhl-uace0-math.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}*/
 
 .bus-mall{
   text-align: center;
