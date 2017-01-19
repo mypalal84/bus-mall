@@ -129,6 +129,9 @@ function clickTrackerHandler(event) {
   }
   else {
     renderImage();
+    leftImage.removeEventListener('click', clickTrackerHandler, false);
+    centerImage.removeEventListener('click', clickTrackerHandler, false);
+    rightImage.removeEventListener('click', clickTrackerHandler, false);
     // console.log(percent(productArray[5].clicked, productArray[5].shown));
     for (var i = 0; i < productArray.length; i++){
       var liEl = document.getElementById('product-ul');
