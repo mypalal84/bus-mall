@@ -26,26 +26,26 @@ function Product(productName, imagePath){
 };
 
 //adding our constructor objects and pushing them into the productArray
-var bag = productArray.push(new Product('bag', 'img/bag.jpg'));
-var banana = productArray.push(new Product('banana', 'img/banana.jpg'));
-var bathroom = productArray.push(new Product('bathroom', 'img/bathroom.jpg'));
-var boots = productArray.push(new Product('boots', 'img/boots.jpg'));
-var breakfast = productArray.push(new Product('breakfast', 'img/breakfast.jpg'));
-var bubblegum = productArray.push(new Product('bubblegum', 'img/bubblegum.jpg'));
-var chair = productArray.push(new Product('chair', 'img/chair.jpg'));
-var cthulhu = productArray.push(new Product('cthulhu', 'img/cthulhu.jpg'));
-var dogDuck = productArray.push(new Product('dog-duck', 'img/dog-duck.jpg'));
-var dragon = productArray.push(new Product('dragon', 'img/dragon.jpg'));
-var pen = productArray.push(new Product('pen', 'img/pen.jpg'));
-var petSweep = productArray.push(new Product('pet-sweep', 'img/pet-sweep.jpg'));
-var scissors = productArray.push(new Product('scissors', 'img/scissors.jpg'));
-var shark = productArray.push(new Product('shark', 'img/shark.jpg'));
-var sweep = productArray.push(new Product('sweep', 'img/sweep.png'));
-var tauntaun = productArray.push(new Product('tauntaun', 'img/tauntaun.jpg'));
-var unicorn = productArray.push(new Product('unicorn', 'img/unicorn.jpg'));
-var usb = productArray.push(new Product('usb', 'img/usb.gif'));
-var waterCan = productArray.push(new Product('water-can', 'img/water-can.jpg'));
-var wineGlass = productArray.push(new Product('wine-glass', 'img/wine-glass.jpg'));
+productArray.push(new Product('bag', 'img/bag.jpg'));
+productArray.push(new Product('banana', 'img/banana.jpg'));
+productArray.push(new Product('bathroom', 'img/bathroom.jpg'));
+productArray.push(new Product('boots', 'img/boots.jpg'));
+productArray.push(new Product('breakfast', 'img/breakfast.jpg'));
+productArray.push(new Product('bubblegum', 'img/bubblegum.jpg'));
+productArray.push(new Product('chair', 'img/chair.jpg'));
+productArray.push(new Product('cthulhu', 'img/cthulhu.jpg'));
+productArray.push(new Product('dog-duck', 'img/dog-duck.jpg'));
+productArray.push(new Product('dragon', 'img/dragon.jpg'));
+productArray.push(new Product('pen', 'img/pen.jpg'));
+productArray.push(new Product('pet-sweep', 'img/pet-sweep.jpg'));
+productArray.push(new Product('scissors', 'img/scissors.jpg'));
+productArray.push(new Product('shark', 'img/shark.jpg'));
+productArray.push(new Product('sweep', 'img/sweep.png'));
+productArray.push(new Product('tauntaun', 'img/tauntaun.jpg'));
+productArray.push(new Product('unicorn', 'img/unicorn.jpg'));
+productArray.push(new Product('usb', 'img/usb.gif'));
+productArray.push(new Product('water-can', 'img/water-can.jpg'));
+productArray.push(new Product('wine-glass', 'img/wine-glass.jpg'));
 console.log(productArray);
 
 //random number between 0 and 19
@@ -112,9 +112,9 @@ function clickTrackerHandler(event) {
     leftImage.removeEventListener('click', clickTrackerHandler, false);
     centerImage.removeEventListener('click', clickTrackerHandler, false);
     rightImage.removeEventListener('click', clickTrackerHandler, false);
-    localStorageFunc();
     pushIntoArrays();
     renderChart();
+    localStorageFunc();
     console.log(clickedArray);
 
   }
@@ -170,3 +170,5 @@ function localStorageFunc(){
     localStorage.setItem(productArray[i].productName , JSON.stringify(productArray[i]));
   };
 };
+
+//parse local storage
