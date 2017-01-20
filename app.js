@@ -106,8 +106,13 @@ function clickTrackerHandler(event) {
       var liEl = document.getElementById('product-ul');
       var newLiEl = document.createElement('li');
       newLiEl.setAttribute('class', 'product-images');
-      newLiEl.textContent = productArray[i].clicked + ' votes for ' + productArray[i].productName + '.';
-      liEl.appendChild(newLiEl);
+      if(productArray[i].clicked == 1){
+        newLiEl.textContent = productArray[i].clicked + ' vote for ' + productArray[i].productName + '.';
+        liEl.appendChild(newLiEl);
+      } else{
+        newLiEl.textContent = productArray[i].clicked + ' votes for ' + productArray[i].productName + '.';
+        liEl.appendChild(newLiEl);
+      }
     }
   }
 }
