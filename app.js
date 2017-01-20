@@ -23,7 +23,6 @@ function Product(productName, imagePath){
   this.clicked = 0;
   this.shown = 0;
   this.imagePath = imagePath;
-
 };
 
 //adding our constructor objects and pushing them into the productArray
@@ -73,7 +72,8 @@ noRepeat();
 function renderImage() {
   for(var i = 0; i < randNumArray.length; i++){
     elArray[i].setAttribute('src', productArray[randNumArray[i]].imagePath);
-    productArray[randNumArray[i]].shown++;
+    var productShown = productArray[randNumArray[i]];
+    productShown.shown++;
   }
 }
 renderImage();
@@ -92,13 +92,16 @@ function clickTrackerHandler(event) {
   // console.log(event);
   // console.log(event.target.id);
     if(event.target.id === 'left'){
-      productArray[randNumArray[0]].clicked++;
+      var leftClick = productArray[randNumArray[0]];
+      leftClick.clicked++;
     }
     else if(event.target.id === 'center'){
-      productArray[randNumArray[1]].clicked++;
+      var centerClick = productArray[randNumArray[1]];
+      centerClick.clicked++;
     }
     else if(event.target.id === 'right'){
-      productArray[randNumArray[2]].clicked++;
+      var rightClick = productArray[randNumArray[2]];
+      rightClick.clicked++;
     }
     noRepeat();
     renderImage();
@@ -111,9 +114,19 @@ function clickTrackerHandler(event) {
     rightImage.removeEventListener('click', clickTrackerHandler, false);
     pushIntoArrays();
     renderChart();
+    localStorageFunc();
+    goBottom();
     console.log(clickedArray);
+
   }
 }
+
+//scroll to bottom of screen
+function goBottom(){
+  var documentHeight = document.documentElement.offsetHeight;
+  var viewportHeight = window.innerHeight;
+  window.scrollTo(0,documentHeight - viewportHeight);
+};
 
 //push numbers into arrays
 function pushIntoArrays() {
@@ -158,3 +171,10 @@ function renderChart() {
     options: chartOptions
   });
 }
+
+//local storage function
+function localStorageFunc(){
+  for(var i = 0; i < productArray.length; i++){
+    localStorage.setItem(productNameArray[i], JSON.stringify(productArray[i]));
+  };
+};
