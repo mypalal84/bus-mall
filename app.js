@@ -115,10 +115,18 @@ function clickTrackerHandler(event) {
     pushIntoArrays();
     renderChart();
     localStorageFunc();
+    goBottom();
     console.log(clickedArray);
 
   }
 }
+
+//scroll to bottom of screen
+function goBottom(){
+  var documentHeight = document.documentElement.offsetHeight;
+  var viewportHeight = window.innerHeight;
+  window.scrollTo(0,documentHeight - viewportHeight);
+};
 
 //push numbers into arrays
 function pushIntoArrays() {
@@ -167,8 +175,6 @@ function renderChart() {
 //local storage function
 function localStorageFunc(){
   for(var i = 0; i < productArray.length; i++){
-    localStorage.setItem(productArray[i].productName , JSON.stringify(productArray[i]));
+    localStorage.setItem(productNameArray[i], JSON.stringify(productArray[i]));
   };
 };
-
-//parse local storage
