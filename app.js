@@ -114,7 +114,7 @@ function clickTrackerHandler(event) {
     rightImage.removeEventListener('click', clickTrackerHandler, false);
     pushIntoArrays();
     renderChart();
-    localStorageFunc();
+    // localStorageFunc();
     goBottom();
     console.log(clickedArray);
 
@@ -172,9 +172,32 @@ function renderChart() {
   });
 }
 
-//local storage function
+// local storage function
 function localStorageFunc(){
   for(var i = 0; i < productArray.length; i++){
     localStorage.setItem(productNameArray[i], JSON.stringify(productArray[i]));
   };
 };
+// function getLocalStorage(){
+//   var test = localStorage.getItem('length');
+//   test = JSON.parse(test);
+//   if (test === 2){
+//     var locShown = localStorage.getItem('shown');
+//     var locClicked = localStorage.getItem('clicked');
+//     for(var i = 0; i < productNameArray.length; i++){
+//       locStorShown.push(sum(productNameArray[i].shown, locShown[i]));
+//       locStorClicked.push(sum(productNameArray[i].clicked, locClicked[i]));
+//     };
+//   } else {
+//     for(var i = 0; i < productNameArray.length; i++){
+//       locStorShown.push(productNameArray[i].shown);
+//       locClicked.push(productNameArray[i].clicked);
+//     };
+//   };
+// };
+//
+// function locStorSet(){
+//   localStorage.setItem('shown', JSON.stringify(locStorShown));
+//   localStorage.setItem('clicked', JSON.stringify(locStorClicked));
+//   localStorage.setItem('length', JSON.stringify(2));
+// };
