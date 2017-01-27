@@ -13,6 +13,8 @@ var elArray = [leftImage, centerImage, rightImage];
 var shown;
 var clicked;
 var clickCounter = 0;
+var updatedLS;
+var updatedClickedArray = [];
 //for chart
 var chartColors = ['tomato', 'sienna', 'paleturquoise', 'darkseagreen', 'sandybrown', 'mocassin', 'cornflowerblue', 'darkkhaki', 'seashell', 'limegreen', 'royalblue', 'darksalmon', 'wheat', 'darkgrey', 'burlywood', 'darkcyan', 'mediumvioletred', 'darkred', 'forestgreen', 'bisque'];
 var chartLabels = [];
@@ -89,8 +91,6 @@ function clickTrackerHandler(event) {
   event.stopPropagation();
   if(clickCounter < 25) {
     clickCounter++;
-  // console.log(event);
-  // console.log(event.target.id);
     if(event.target.id === 'left'){
       var leftClick = productArray[randNumArray[0]];
       leftClick.clicked++;
@@ -113,11 +113,9 @@ function clickTrackerHandler(event) {
     centerImage.removeEventListener('click', clickTrackerHandler, false);
     rightImage.removeEventListener('click', clickTrackerHandler, false);
     pushIntoArrays();
-    renderChart();
-    // localStorageFunc();
+    getLocalStorage();
     goBottom();
-    console.log(clickedArray);
-
+    renderChart();
   }
 }
 
@@ -140,7 +138,7 @@ function pushIntoArrays() {
 //percentage function for products clicked/products shown
 function percent(clicked, shown) {
   return((clicked / shown) * 100).toFixed(2);
-}
+};
 
 //canvas
 function renderChart() {
@@ -164,7 +162,7 @@ function renderChart() {
       labels: productNameArray,
       datasets: [{
         label: '# of votes for each product',
-        data: clickedArray,
+        data: updatedClickedArray,
         backgroundColor: chartColors
       }]
     },
@@ -172,32 +170,20 @@ function renderChart() {
   });
 }
 
-// local storage function
-function localStorageFunc(){
-  for(var i = 0; i < productArray.length; i++){
-    localStorage.setItem(productNameArray[i], JSON.stringify(productArray[i]));
-  };
-};
-// function getLocalStorage(){
-//   var test = localStorage.getItem('length');
-//   test = JSON.parse(test);
-//   if (test === 2){
-//     var locShown = localStorage.getItem('shown');
-//     var locClicked = localStorage.getItem('clicked');
-//     for(var i = 0; i < productNameArray.length; i++){
-//       locStorShown.push(sum(productNameArray[i].shown, locShown[i]));
-//       locStorClicked.push(sum(productNameArray[i].clicked, locClicked[i]));
-//     };
-//   } else {
-//     for(var i = 0; i < productNameArray.length; i++){
-//       locStorShown.push(productNameArray[i].shown);
-//       locClicked.push(productNameArray[i].clicked);
-//     };
-//   };
-// };
-//
-// function locStorSet(){
-//   localStorage.setItem('shown', JSON.stringify(locStorShown));
-//   localStorage.setItem('clicked', JSON.stringify(locStorClicked));
-//   localStorage.setItem('length', JSON.stringify(2));
-// };
+
+//local storage functions
+function getLocalStorage() {
+  if(localStorage.length == 0) {
+    for(var i = 0; i < productArray.length; i++) {
+      localStorage.setItem(productNameArray[i], JSON.stringify(productArray[i].clicked));
+    };
+  }
+  if (localStorage.length > 0) {
+    for(var i = 0; i < productArray.length; i++) {
+      var lsData = JSON.parse(localStorage.getItem(productNameArray[i]));
+      localStorage.setItem(productNameArray[i], JSON.stringify(productArray[i].clicked + lsData));
+      updatedClickedArray.push(productArray[i].clicked + lsData);
+      console.log('local storage exists');
+    }
+  }
+}
