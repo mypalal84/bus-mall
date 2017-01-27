@@ -13,6 +13,8 @@ var elArray = [leftImage, centerImage, rightImage];
 var shown;
 var clicked;
 var clickCounter = 0;
+var updatedLS;
+var updatedClickedArray = [];
 //for chart
 var chartColors = ['tomato', 'sienna', 'paleturquoise', 'darkseagreen', 'sandybrown', 'mocassin', 'cornflowerblue', 'darkkhaki', 'seashell', 'limegreen', 'royalblue', 'darksalmon', 'wheat', 'darkgrey', 'burlywood', 'darkcyan', 'mediumvioletred', 'darkred', 'forestgreen', 'bisque'];
 var chartLabels = [];
@@ -113,10 +115,10 @@ function clickTrackerHandler(event) {
     centerImage.removeEventListener('click', clickTrackerHandler, false);
     rightImage.removeEventListener('click', clickTrackerHandler, false);
     pushIntoArrays();
-    renderChart();
-    localStorageFunc();
+    getLocalStorage();
     goBottom();
-    console.log(clickedArray);
+    renderChart();
+    // console.log(clickedArray);
 
   }
 }
@@ -140,7 +142,7 @@ function pushIntoArrays() {
 //percentage function for products clicked/products shown
 function percent(clicked, shown) {
   return((clicked / shown) * 100).toFixed(2);
-}
+};
 
 //canvas
 function renderChart() {
@@ -164,7 +166,7 @@ function renderChart() {
       labels: productNameArray,
       datasets: [{
         label: '# of votes for each product',
-        data: clickedArray,
+        data: updatedClickedArray,
         backgroundColor: chartColors
       }]
     },
@@ -172,9 +174,20 @@ function renderChart() {
   });
 }
 
-//local storage function
-function localStorageFunc(){
-  for(var i = 0; i < productArray.length; i++){
-    localStorage.setItem(productNameArray[i], JSON.stringify(productArray[i]));
-  };
-};
+//local storage functions
+
+function getLocalStorage() {
+  if(localStorage.length == 0) {
+    for(var i = 0; i < productArray.length; i++) {
+      localStorage.setItem(productNameArray[i], JSON.stringify(productArray[i].clicked));
+    };
+  }
+  if (localStorage.length > 0) {
+    for(var i = 0; i < productArray.length; i++) {
+      var lsData = JSON.parse(localStorage.getItem(productNameArray[i]));
+      localStorage.setItem(productNameArray[i], JSON.stringify(productArray[i].clicked + lsData));
+      updatedClickedArray.push(productArray[i].clicked + lsData);
+      console.log('local storage exists');
+    }
+  }
+}
