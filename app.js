@@ -15,6 +15,7 @@ var clicked;
 var clickCounter = 0;
 var updatedLS;
 var updatedClickedArray = [];
+
 //for chart
 var chartColors = ['tomato', 'sienna', 'paleturquoise', 'darkseagreen', 'sandybrown', 'mocassin', 'cornflowerblue', 'darkkhaki', 'seashell', 'limegreen', 'royalblue', 'darksalmon', 'wheat', 'darkgrey', 'burlywood', 'darkcyan', 'mediumvioletred', 'darkred', 'forestgreen', 'bisque'];
 var chartLabels = [];
@@ -91,8 +92,6 @@ function clickTrackerHandler(event) {
   event.stopPropagation();
   if(clickCounter < 25) {
     clickCounter++;
-  // console.log(event);
-  // console.log(event.target.id);
     if(event.target.id === 'left'){
       var leftClick = productArray[randNumArray[0]];
       leftClick.clicked++;
@@ -116,10 +115,8 @@ function clickTrackerHandler(event) {
     rightImage.removeEventListener('click', clickTrackerHandler, false);
     pushIntoArrays();
     getLocalStorage();
-    goBottom();
     renderChart();
-    // console.log(clickedArray);
-
+    goBottom();
   }
 }
 
@@ -175,19 +172,18 @@ function renderChart() {
 }
 
 //local storage functions
-
 function getLocalStorage() {
-  if(localStorage.length == 0) {
-    for(var i = 0; i < productArray.length; i++) {
-      localStorage.setItem(productNameArray[i], JSON.stringify(productArray[i].clicked));
-    };
-  }
   if (localStorage.length > 0) {
     for(var i = 0; i < productArray.length; i++) {
       var lsData = JSON.parse(localStorage.getItem(productNameArray[i]));
       localStorage.setItem(productNameArray[i], JSON.stringify(productArray[i].clicked + lsData));
       updatedClickedArray.push(productArray[i].clicked + lsData);
-      console.log('local storage exists');
     }
   }
-}
+  if(localStorage.length === 0) {
+    for(var i = 0; i < productArray.length; i++) {
+      localStorage.setItem(productNameArray[i], JSON.stringify(productArray[i].clicked));
+      updatedClickedArray.push(productArray[i].clicked);
+    }
+  }
+};
