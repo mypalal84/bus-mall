@@ -91,8 +91,6 @@ function clickTrackerHandler(event) {
   event.stopPropagation();
   if(clickCounter < 25) {
     clickCounter++;
-  // console.log(event);
-  // console.log(event.target.id);
     if(event.target.id === 'left'){
       var leftClick = productArray[randNumArray[0]];
       leftClick.clicked++;
@@ -118,8 +116,6 @@ function clickTrackerHandler(event) {
     getLocalStorage();
     goBottom();
     renderChart();
-    // console.log(clickedArray);
-
   }
 }
 
@@ -174,8 +170,8 @@ function renderChart() {
   });
 }
 
-//local storage functions
 
+//local storage functions
 function getLocalStorage() {
   if(localStorage.length == 0) {
     for(var i = 0; i < productArray.length; i++) {
